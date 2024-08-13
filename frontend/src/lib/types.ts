@@ -304,3 +304,8 @@ export interface NotionPageContent {
   block: Record<string, unknown>;
   request_id: string;
 }
+
+export interface DataContextType {
+  cache: Page[];
+  setCache: React.Dispatch<React.SetStateAction<Page[]>>;
+}

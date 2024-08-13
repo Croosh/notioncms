@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Block, Page } from "../lib/Type";
+import { Block, Page } from "../lib/types";
 import { Card, CardBody } from "@chakra-ui/react";
 import { Badge } from "@chakra-ui/react";
 import { getDate } from "../lib/utils";
@@ -86,12 +86,14 @@ function BlogPage() {
       case "image":
         return (
           <>
-            <img
-              className=" my-4 w-1/2 rounded-md"
-              loading="lazy"
-              key={block.image.file.url}
-              src={block.image.file.url}
-            />
+            <div className="flex w-full justify-center items-center">
+              <img
+                className=" my-4 w-1/2 rounded-md place-center"
+                loading="lazy"
+                key={block.image.file.url}
+                src={block.image.file.url}
+              />
+            </div>
           </>
         );
     }
@@ -148,7 +150,7 @@ function BlogPage() {
             </div>
           </>
         ) : (
-          <span className=" text-xl animate-pulse  font-inter font-bold text-white">
+          <span className=" text-3xl animate-pulse  font-inter font-medium text-white">
             Loading
           </span>
         )}

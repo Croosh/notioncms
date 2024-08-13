@@ -1,6 +1,5 @@
 export const getDate = (date: string) => {
   const nwedate = new Date(date);
-
   // Define an array of month names
   const months = [
     "Jan",

@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Page, NotionApi } from "../lib/Type";
+import { useEffect, useMemo, useState } from "react";
+import { Page, NotionApi } from "../lib/types";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import {
@@ -28,17 +28,29 @@ export default function DBTable() {
         .then((json: NotionApi) => {
           setData(json.results);
           console.log(json);
+          localStorage.setItem("cache", JSON.stringify(json.results));
         })
-        .then(() => console.log(data))
+        .then((e) => localStorage.setItem("dbData", JSON.stringify(e)))
         .catch((error) => console.error("Error fetching data:", error));
     },
-    [data]
+
+    []
   );
+  useEffect(() => {
+    const cache = localStorage.getItem("cache");
+    try {
+      if (cache) {
+        setData(JSON.parse(cache));
+      }
+    } catch (error) {
+      fetchDBData();
+    }
+  }, [data, data.length, fetchDBData]);
   return (
     <div className="w-2/3 flex justify-center items-center">
       {data.length > 0 ? (
         <>
-          <div className="shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] popupanimation">
+          <div className={"shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] "}>
             <Card className=" ">
               <CardBody>
                 <TableContainer>
@@ -98,14 +110,9 @@ export default function DBTable() {
           </div>
         </>
       ) : (
-        <>
-          <Button
-            className="shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
-            onClick={fetchDBData}
-          >
-            Fetch
-          </Button>
-        </>
+        <span className=" text-3xl animate-pulse  font-inter font-medium text-white">
+          Loading
+        </span>
       )}
     </div>
   );
