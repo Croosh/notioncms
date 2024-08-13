@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
+.bg-grad {
+  background: radial-gradient(
+    circle at 50% 100%,
+    #f7ff0a,
+    #ffd000,
+    #ffa026,
+    #ff7144,
+    #f9455b,
+    #d71c6d,
+    #ab0478,
+    #77107b
+  );
+  background-size: 300% 300%;
+  background-position: 0 0;
+  animation: bggrad 20s infinite;
+}
+
+@keyframes bggrad {
+  0% {
+    background-position: top left;
+  }
+  25% {
+    background-position: top right;
+  }
+  50% {
+    background-position: bottom right;
+  }
+  75% {
+    background-position: bottom left;
+  }
+  100% {
+    background-position: top left;
+  }
+}
+
+.popupanimation {
+  animation: popup 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes popup {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.blogin {
+  animation: bloginanim 500ms cubic-bezier(0.85, 0, 0.15, 1) 0s 1 normal
+    forwards;
+}
+
+@keyframes bloginanim {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
