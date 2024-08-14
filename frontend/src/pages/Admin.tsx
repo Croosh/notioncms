@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { getDate } from "../lib/utils";
 
-export default function DBTable() {
+export default function Admin() {
   const [data, setData] = useState<Page[]>([]);
 
   const fetchDBData = useMemo(
@@ -50,8 +50,8 @@ export default function DBTable() {
     <div className="w-2/3 flex justify-center items-center">
       {data.length > 0 ? (
         <>
-          <div className={"shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px] "}>
-            <Card className=" ">
+          <div className={"shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]  "}>
+            <Card>
               <CardBody>
                 <TableContainer>
                   <Table size={"md"} className="w-full">
@@ -96,7 +96,7 @@ export default function DBTable() {
                             )}
                           </Td>
                           <Td className=" justify-center">
-                            <Link to={`/page/${page.id}`}>
+                            <Link target="_blank" to={`/blog/${page.id}`}>
                               <Button>Read</Button>
                             </Link>
                           </Td>
